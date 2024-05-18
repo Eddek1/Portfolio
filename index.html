@@ -28,9 +28,11 @@
             <h3>Hello, It's Me</h3>
             <h1>Edde Kebe</h1>
             <h3>And I am a <span>Computer Science student</span></h3>
-            <p>I am an aspiring software engineer; Currently attending Rockhurst University to get a computer science degree.
-                 I am open to software developer roles and software engineering roles.
-                  Whether it is an internship or a junior position, I am open to it</p>
+            <p>I am an aspiring software engineer currently pursuing a 
+                computer science degree at Rockhurst University. 
+                I am eager to explore opportunities in 
+                software development and engineering, 
+                whether through internships or entry-level positions.</p>
 
             <div class="social-media">
                 <a href="#"><i class='bx bxl-facebook-circle'></i></a>
@@ -54,7 +56,8 @@
         <div class="about-content">
             <h2 class = heading>About <span>Me</span></h2>
             <h3>Fullstack Developer</h3>
-            <p>Open to new challenges through summer internship to advance in my career.</p>
+            <p>With my current skill set, I thrive in working independently with minimal guidance. However, I am also deeply motivated to learn 
+            from others, recognizing the invaluable opportunity it presents for furthering my expertise and broadening my horizons.</p>
                 <a href="#" class = btn>Read More</a>
         </div>
     </section>
@@ -121,21 +124,50 @@
 
     <section class="contacts" id="contacts">
         <h2 class="heading">Contact <span>Me!</span></h2>
-        <form action="#">
+        <form id="contact-form">
             <div class="input-box">
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email Address"> 
+                <input type="text" name="name" id="name" placeholder="Full Name" required>
+                <input type="email" name="email" id="email" placeholder="Email Address" required> 
             </div>
             <div class="input-box">
-                <input type="number" placeholder="Mobile Number">
-                <input type="text" placeholder="Email Subject">
+                <input type="number" name="phone" id="phone" placeholder="Mobile Number">
+                <input type="text" name="subject" id="subject" placeholder="Email Subject" required>
             </div>
-
-            <textarea name="" id="" cols="30" rows="10">Your Message</textarea>
-            <input type="submit" value="Send Message" class = "btn">
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" class="btn">
         </form>
-
+        
     </section>
+    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init("eddeKB");
+
+        // Handle form submission
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            };
+
+            // Send email using EmailJS
+            emailjs.send("service_logk43m", "template_nzzgtah", formData)
+                .then(function(response) {
+                    console.log("Email sent successfully:", response);
+                    // Handle success (e.g., show success message)
+                }, function(error) {
+                    console.error("Email sending failed:", error);
+                    // Handle error (e.g., display error message)
+                });
+        });
+    </script>
 
     <footer class="footer">
         <div class="footer-text">
